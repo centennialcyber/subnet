@@ -16,7 +16,7 @@ class OctetFrame(tk.Frame):
 
     def create_widgets(self):
         # Label for Octet Number
-        tk.Label(self, text=f"Octet {self.octet_index + 1}", font=("Helvetica", 12, "bold")).grid(row=0, column=0, columnspan=8, pady=(0, 5))
+        tk.Label(self, text=f"Octet {self.octet_index + 1}", font=("Helvetica", 8, "bold")).grid(row=0, column=0, columnspan=8, pady=(0, 5))
 
         # Create labels for bit positions (Bit 1 to Bit 8)
         for i in range(8):
@@ -67,39 +67,39 @@ class SubnettingApp(tk.Tk):
     def create_widgets(self):
         # Header Frame for Example IP Address
         header_frame = tk.Frame(self)
-        header_frame.pack(pady=10)
+        header_frame.pack(pady=2)
 
         example_ip = "192.168.1.0"
         octets = example_ip.split('.')
 
         # Display Example IP Address with Octet Labels
-        tk.Label(header_frame, text="Example IP Address:", font=("Helvetica", 12, "bold")).grid(row=0, column=0, columnspan=7, pady=(0, 5))
+        tk.Label(header_frame, text="Example IP Address:", font=("Helvetica", 10, "bold")).grid(row=0, column=0, columnspan=7, pady=(0, 5))
         for i, octet in enumerate(octets):
-            tk.Label(header_frame, text=f"Octet {i + 1}\n{octet}", font=("Helvetica", 10), padx=5).grid(row=1, column=2*i)
+            tk.Label(header_frame, text=f"Octet {i + 1}\n{octet}", font=("Helvetica", 8), padx=5).grid(row=1, column=2*i)
             if i < len(octets) - 1:
-                tk.Label(header_frame, text=".", font=("Helvetica", 10)).grid(row=1, column=2*i + 1, pady=(18, 0))
+                tk.Label(header_frame, text=".", font=("Helvetica", 8)).grid(row=1, column=2*i + 1, pady=(18, 0))
 
         # Separator
         separator = ttk.Separator(self, orient='horizontal')
-        separator.pack(fill='x', pady=5)
+        separator.pack(fill='x', pady=2)
 
         # Frame for all octets
         self.octets_frame = tk.Frame(self)
-        self.octets_frame.pack(pady=10)
+        self.octets_frame.pack(pady=5)
 
         # Create four OctetFrames stacked vertically
         for i in range(4):
             frame = OctetFrame(self, i, bd=2, relief="groove")
-            frame.pack(pady=5, fill='x', expand=True)
+            frame.pack(pady=1, fill='x', expand=True)
             self.octet_frames.append(frame)
 
         # Label to display the full IP address
-        self.full_ip_label = tk.Label(self, text="", font=("Helvetica", 16))
-        self.full_ip_label.pack(pady=10)
+        self.full_ip_label = tk.Label(self, text="", font=("Helvetica", 10))
+        self.full_ip_label.pack(pady=5)
 
         # Add the Clear button
         clear_button = tk.Button(self, text='Clear', command=self.clear_all_bits)
-        clear_button.pack(pady=10)
+        clear_button.pack(pady=5)
 
         # Initialize the display
         self.update_full_ip_display()
